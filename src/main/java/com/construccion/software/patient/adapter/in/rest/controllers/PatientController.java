@@ -30,14 +30,7 @@ public class PatientController {
     @PostMapping("/Patients")
     public ResponseEntity<?> createPatient(@RequestBody PatientRequest request) throws Exception {
 
-        Patient patient = patientBuilder.build(
-                request.getDocumentId(),
-                request.getName(),
-                request.getGenre(),
-                request.getAddress(),
-                request.getPhone(),
-                request.getEmail()
-        );
+        Patient patient = patientBuilder.build(request);
 
         Patient createdPatient = patientUseCase.createPatient(patient);
 
@@ -48,14 +41,7 @@ public class PatientController {
     @PatchMapping("/Patients")
     public ResponseEntity<?> updatePatient(@RequestBody PatientRequest request) throws Exception {
 
-        Patient patient = patientBuilder.build(
-                request.getDocumentId(),
-                request.getName(),
-                request.getGenre(),
-                request.getAddress(),
-                request.getPhone(),
-                request.getEmail()
-        );
+        Patient patient = patientBuilder.build(request);
 
         Patient updatedPatient = patientUseCase.updatePatient(patient);
 

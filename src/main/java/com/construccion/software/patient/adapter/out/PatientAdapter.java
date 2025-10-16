@@ -2,6 +2,8 @@ package com.construccion.software.patient.adapter.out;
 
 import com.construccion.software.patient.domain.models.Patient;
 import com.construccion.software.patient.domain.ports.PatientPort;
+import com.construccion.software.patient.infrastructure.persistence.entities.EmergencyContactEntity;
+import com.construccion.software.patient.infrastructure.persistence.entities.HealthInsuranceEntity;
 import com.construccion.software.patient.infrastructure.persistence.entities.PatientEntity;
 import com.construccion.software.patient.infrastructure.persistence.mapper.PatientMapper;
 import com.construccion.software.patient.infrastructure.persistence.repository.PatientRepository;
@@ -42,18 +44,33 @@ public class PatientAdapter implements PatientPort {
     }
 
     @Override
-    public Patient update(Patient employee) {
+    public Patient update(Patient patient) {
 
-        Optional<PatientEntity> patientOptional = patientRepository.findById(employee.getDocumentId());
+        Optional<PatientEntity> patientOptional = patientRepository.findById(patient.getDocumentId());
 
         if (patientOptional.isPresent()) {
             PatientEntity patientEntity = patientOptional.get();
 
-            patientEntity.setName(employee.getName());
-            patientEntity.setGenre(employee.getGenre().name());
-            patientEntity.setAddress(employee.getAddress());
-            patientEntity.setPhone(employee.getPhone());
-            patientEntity.setEmail(employee.getEmail());
+            EmergencyContactEntity emergencyContactEntity = new EmergencyContactEntity();
+            emergencyContactEntity.setName(patient.getEmergencyContact().getName());
+            emergencyContactEntity.setSurname(patient.getEmergencyContact().getSurname());
+            emergencyContactEntity.setRelationship(patient.getEmergencyContact().getRelationship());
+            emergencyContactEntity.setPhone(patient.getEmergencyContact().getPhone());
+
+            HealthInsuranceEntity healthInsuranceEntity = new HealthInsuranceEntity();
+            healthInsuranceEntity.setCompanyName(patient.getHealthInsurance().getCompanyName());
+            healthInsuranceEntity.setPolicyNumber(patient.getHealthInsurance().getPolicyNumber());
+            healthInsuranceEntity.setActive(patient.getHealthInsurance().isActive());
+            healthInsuranceEntity.setPolicyValidity(patient.getHealthInsurance().getPolicyValidity());
+
+            patientEntity.setName(patient.getName());
+            patientEntity.setSurname(patient.getSurname());
+            patientEntity.setGenre(patient.getGenre().name());
+            patientEntity.setAddress(patient.getAddress());
+            patientEntity.setPhone(patient.getPhone());
+            patientEntity.setEmail(patient.getEmail());
+            patientEntity.setEmergencyContact(emergencyContactEntity);
+            patientEntity.setHealthInsurance(healthInsuranceEntity);
 
             PatientEntity updatedPatient = patientRepository.save(patientEntity);
 

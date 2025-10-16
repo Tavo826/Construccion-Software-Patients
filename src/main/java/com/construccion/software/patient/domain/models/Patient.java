@@ -6,10 +6,13 @@ public class Patient {
 
     private long documentId;
     private String name;
+    private String surname;
     private Genre genre;
     private String address;
-    private String phone;
+    private long phone;
     private String email;
+    private EmergencyContact emergencyContact;
+    private HealthInsurance healthInsurance;
 
     public long getDocumentId() {
         return documentId;
@@ -25,6 +28,14 @@ public class Patient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public Genre getGenre() {
@@ -43,11 +54,11 @@ public class Patient {
         this.address = address;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
@@ -57,5 +68,21 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public EmergencyContact getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(EmergencyContact emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public HealthInsurance getHealthInsurance() {
+        return healthInsurance;
+    }
+
+    public void setHealthInsurance(HealthInsurance healthInsurance) {
+        this.healthInsurance = healthInsurance;
     }
 }

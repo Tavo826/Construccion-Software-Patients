@@ -7,27 +7,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class PatientValidator extends SimpleValidator {
 
-    public long documentValidator(String value) throws InputsException {
+    public long documentValidator(String value) throws Exception {
         return longValidator("el documento de la persona", value);
     }
 
-    public String nameValidator(String value) throws InputsException {
+    public String nameValidator(String value) throws Exception {
         return stringValidator("nombre de la persona", value);
     }
 
-    public Genre genreValidator(String value) throws InputsException {
+    public String surnameValidator(String value) throws Exception {
+        return stringValidator("apellido de la persona", value);
+    }
+
+    public Genre genreValidator(String value) throws Exception {
         return genreValidator("el género de la persona", value);
     }
 
-    public String addressValidator(String value) throws InputsException {
+    public String addressValidator(String value) throws Exception {
         return addressValidator("dirección", value);
     }
 
-    public String phoneValidator(String value) throws InputsException {
+    public long phoneValidator(String value) throws Exception {
         return phoneValidator("teléfono", value);
     }
 
-    public String emailValidator(String value) throws InputsException {
+    public String emailValidator(String value) throws Exception {
         return emailValidator("email", value);
     }
 }
