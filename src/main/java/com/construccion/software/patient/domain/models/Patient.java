@@ -1,13 +1,16 @@
 package com.construccion.software.patient.domain.models;
 
-import com.construccion.software.patient.domain.models.enums.Genre;
+import com.construccion.software.patient.domain.models.enums.Gender;
+
+import java.time.LocalDate;
 
 public class Patient {
 
     private long documentId;
     private String name;
     private String surname;
-    private Genre genre;
+    private LocalDate birthDate;
+    private Gender gender;
     private String address;
     private long phone;
     private String email;
@@ -38,12 +41,20 @@ public class Patient {
         this.surname = surname;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {

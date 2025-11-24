@@ -1,8 +1,9 @@
 package com.construccion.software.patient.adapter.in.validators;
 
-import com.construccion.software.patient.application.exceptions.InputsException;
-import com.construccion.software.patient.domain.models.enums.Genre;
+import com.construccion.software.patient.domain.models.enums.Gender;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class PatientValidator extends SimpleValidator {
@@ -19,8 +20,12 @@ public class PatientValidator extends SimpleValidator {
         return stringValidator("apellido de la persona", value);
     }
 
-    public Genre genreValidator(String value) throws Exception {
-        return genreValidator("el género de la persona", value);
+    public LocalDate dateValidator(String value) throws Exception {
+        return dateValidator("fecha de nacimiento", value);
+    }
+
+    public Gender genderValidator(String value) throws Exception {
+        return genderValidator("el género de la persona", value);
     }
 
     public String addressValidator(String value) throws Exception {

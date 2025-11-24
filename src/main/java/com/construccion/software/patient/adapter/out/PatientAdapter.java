@@ -9,6 +9,7 @@ import com.construccion.software.patient.infrastructure.persistence.mapper.Patie
 import com.construccion.software.patient.infrastructure.persistence.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,14 @@ public class PatientAdapter implements PatientPort {
 
     public PatientAdapter(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
+    }
+
+    @Override
+    public List<Patient> findAll() throws Exception {
+
+        List<PatientEntity> patientList = patientRepository.findAll();
+
+        return PatientMapper.toDomain(patientList);
     }
 
     @Override
@@ -65,7 +74,8 @@ public class PatientAdapter implements PatientPort {
 
             patientEntity.setName(patient.getName());
             patientEntity.setSurname(patient.getSurname());
-            patientEntity.setGenre(patient.getGenre().name());
+            patientEntity.setBirthDate(patient.getBirthDate());
+            patientEntity.setGender(patient.getGender().name());
             patientEntity.setAddress(patient.getAddress());
             patientEntity.setPhone(patient.getPhone());
             patientEntity.setEmail(patient.getEmail());

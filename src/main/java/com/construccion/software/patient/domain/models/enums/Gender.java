@@ -1,6 +1,6 @@
 package com.construccion.software.patient.domain.models.enums;
 
-public enum Genre {
+public enum Gender {
     MALE,
     FEMALE,
     OTHER;

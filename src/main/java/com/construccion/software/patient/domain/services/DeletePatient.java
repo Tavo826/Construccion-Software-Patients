@@ -1,7 +1,6 @@
 package com.construccion.software.patient.domain.services;
 
 import com.construccion.software.patient.application.exceptions.BusinessException;
-import com.construccion.software.patient.domain.models.Patient;
 import com.construccion.software.patient.domain.ports.PatientPort;
 import org.springframework.stereotype.Service;
 
