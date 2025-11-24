@@ -4,7 +4,6 @@ import com.construccion.software.patient.adapter.in.rest.request.PatientRequest;
 import com.construccion.software.patient.adapter.in.validators.EmergencyContactValidator;
 import com.construccion.software.patient.adapter.in.validators.HealthInsuranceValidator;
 import com.construccion.software.patient.adapter.in.validators.PatientValidator;
-import com.construccion.software.patient.application.exceptions.InputsException;
 import com.construccion.software.patient.domain.models.EmergencyContact;
 import com.construccion.software.patient.domain.models.HealthInsurance;
 import com.construccion.software.patient.domain.models.Patient;
@@ -44,7 +43,8 @@ public class PatientBuilder {
         patient.setDocumentId(patientValidator.documentValidator(request.getDocumentId()));
         patient.setName(patientValidator.nameValidator(request.getName()));
         patient.setSurname(patientValidator.surnameValidator(request.getSurname()));
-        patient.setGenre(patientValidator.genreValidator(request.getGenre()));
+        patient.setBirthDate(patientValidator.dateValidator(request.getBirthDate()));
+        patient.setGender(patientValidator.genderValidator(request.getGender()));
         patient.setAddress(patientValidator.addressValidator(request.getAddress()));
         patient.setPhone(patientValidator.phoneValidator(request.getPhone()));
         patient.setEmail(patientValidator.emailValidator(request.getEmail()));

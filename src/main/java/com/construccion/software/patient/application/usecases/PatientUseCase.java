@@ -7,6 +7,8 @@ import com.construccion.software.patient.domain.services.GetPatient;
 import com.construccion.software.patient.domain.services.UpdatePatient;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PatientUseCase {
 
@@ -24,6 +26,11 @@ public class PatientUseCase {
         this.createPatient = createPatient;
         this.updatePatient = updatePatient;
         this.deletePatient = deletePatient;
+    }
+
+    public List<Patient> getAllPatient() throws Exception {
+
+        return getPatient.getAllPatient();
     }
 
     public Patient getPatientByDocumentId(long documentId) throws Exception {

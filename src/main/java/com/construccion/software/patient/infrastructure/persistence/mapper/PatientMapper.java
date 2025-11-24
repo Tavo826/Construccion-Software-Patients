@@ -3,10 +3,13 @@ package com.construccion.software.patient.infrastructure.persistence.mapper;
 import com.construccion.software.patient.domain.models.EmergencyContact;
 import com.construccion.software.patient.domain.models.HealthInsurance;
 import com.construccion.software.patient.domain.models.Patient;
-import com.construccion.software.patient.domain.models.enums.Genre;
+import com.construccion.software.patient.domain.models.enums.Gender;
 import com.construccion.software.patient.infrastructure.persistence.entities.EmergencyContactEntity;
 import com.construccion.software.patient.infrastructure.persistence.entities.HealthInsuranceEntity;
 import com.construccion.software.patient.infrastructure.persistence.entities.PatientEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientMapper {
 
@@ -20,7 +23,8 @@ public class PatientMapper {
         entity.setDocumentId(patient.getDocumentId());
         entity.setName(patient.getName());
         entity.setSurname(patient.getSurname());
-        entity.setGenre(patient.getGenre().name());
+        entity.setBirthDate(patient.getBirthDate());
+        entity.setGender(patient.getGender().name());
         entity.setAddress(patient.getAddress());
         entity.setPhone(patient.getPhone());
         entity.setEmail(patient.getEmail());
@@ -60,6 +64,20 @@ public class PatientMapper {
         return entity;
     }
 
+    public static List<Patient> toDomain(List<PatientEntity> entityList) {
+
+        if (entityList == null) {
+            return null;
+        }
+
+        List<Patient> patientList = new ArrayList<Patient>();
+        for (PatientEntity entity : entityList) {
+            patientList.add(toDomain(entity));
+        }
+
+        return patientList;
+    }
+
     public static Patient toDomain(PatientEntity entity) {
 
         if (entity == null) {
@@ -70,7 +88,8 @@ public class PatientMapper {
         patient.setDocumentId(entity.getDocumentId());
         patient.setName(entity.getName());
         patient.setSurname(entity.getSurname());
-        patient.setGenre(Genre.valueOf(entity.getGenre()));
+        patient.setBirthDate(entity.getBirthDate());
+        patient.setGender(Gender.valueOf(entity.getGender()));
         patient.setAddress(entity.getAddress());
         patient.setPhone(entity.getPhone());
         patient.setEmail(entity.getEmail());

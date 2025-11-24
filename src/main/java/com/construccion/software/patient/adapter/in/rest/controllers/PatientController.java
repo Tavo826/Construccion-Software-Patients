@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("api/patients")
 public class PatientController {
 
     private final PatientBuilder patientBuilder;
@@ -19,7 +22,15 @@ public class PatientController {
         this.patientUseCase = patientUseCase;
     }
 
-    @GetMapping("/Patients/{documentId}")
+    @GetMapping
+    public ResponseEntity<?> getAllPatients() throws Exception {
+
+        List<Patient> patientList = patientUseCase.getAllPatient();
+
+        return ResponseEntity.ok(patientList);
+    }
+
+    @GetMapping("/{documentId}")
     public ResponseEntity<?> getPatientByDocumentId(@PathVariable String documentId) throws Exception {
 
         Patient patient = patientUseCase.getPatientByDocumentId(patientBuilder.getDocumentId(documentId));
@@ -27,7 +38,7 @@ public class PatientController {
         return ResponseEntity.ok(patient);
     }
 
-    @PostMapping("/Patients")
+    @PostMapping("")
     public ResponseEntity<?> createPatient(@RequestBody PatientRequest request) throws Exception {
 
         Patient patient = patientBuilder.build(request);
@@ -38,7 +49,7 @@ public class PatientController {
                 .body(createdPatient);
     }
 
-    @PatchMapping("/Patients")
+    @PatchMapping("")
     public ResponseEntity<?> updatePatient(@RequestBody PatientRequest request) throws Exception {
 
         Patient patient = patientBuilder.build(request);
@@ -48,7 +59,7 @@ public class PatientController {
         return ResponseEntity.ok(updatedPatient);
     }
 
-    @DeleteMapping("/Patients/{documentId}")
+    @DeleteMapping("/{documentId}")
     public ResponseEntity<?> deletePatient(@PathVariable String documentId) throws Exception {
 
         patientUseCase.deletePatient(patientBuilder.getDocumentId(documentId));

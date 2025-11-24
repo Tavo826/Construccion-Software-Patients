@@ -1,7 +1,7 @@
 package com.construccion.software.patient.adapter.in.validators;
 
 import com.construccion.software.patient.application.exceptions.InputsException;
-import com.construccion.software.patient.domain.models.enums.Genre;
+import com.construccion.software.patient.domain.models.enums.Gender;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,10 +40,10 @@ public abstract class SimpleValidator {
         }
     }
 
-    public Genre genreValidator(String element, String value) throws Exception {
+    public Gender genderValidator(String element, String value) throws Exception {
         stringValidator(element, value);
         try {
-            return Genre.valueOf(value);
+            return Gender.valueOf(value);
         } catch (Exception e) {
             throw new InputsException(element + " no es un rol válido");
         }
@@ -62,7 +62,7 @@ public abstract class SimpleValidator {
     public LocalDate dateValidator(String element, String value) throws Exception {
         stringValidator(element, value);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         try {
             LocalDate date = LocalDate.parse(value, formatter);

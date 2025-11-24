@@ -1,13 +1,12 @@
 package com.construccion.software.patient.adapter.in.rest.request;
 
-import com.construccion.software.patient.domain.models.enums.Genre;
-
 public class PatientRequest {
 
     private String documentId;
     private String name;
     private String surname;
-    private String genre;
+    private String birthDate;
+    private String gender;
     private String address;
     private String phone;
     private String email;
@@ -38,12 +37,20 @@ public class PatientRequest {
         this.surname = surname;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {

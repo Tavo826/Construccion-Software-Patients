@@ -1,7 +1,5 @@
 package com.construccion.software.patient.adapter.in.rest.request;
 
-import java.time.LocalDate;
-
 public class HealthInsuranceRequest {
 
     private String companyName;

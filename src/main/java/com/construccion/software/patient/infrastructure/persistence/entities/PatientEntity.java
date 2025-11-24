@@ -2,6 +2,8 @@ package com.construccion.software.patient.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "patients")
 public class PatientEntity {
@@ -15,8 +17,11 @@ public class PatientEntity {
     @Column(nullable = false, length = 50)
     private String surname;
 
+    @Column(nullable = false)
+    private LocalDate birthDate;
+
     @Column(nullable = false, length = 10)
-    private String genre;
+    private String gender;
 
     @Column(nullable = false, length = 30)
     private String address;
@@ -59,12 +64,20 @@ public class PatientEntity {
         this.surname = surname;
     }
 
-    public String getGenre() {
-        return genre;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {
